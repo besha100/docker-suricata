@@ -77,4 +77,8 @@ jobs:
     - run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
     - run: docker pull docker.pkg.github.com/${GITHUB_ACTOR}/docker-suricata/runner-x86_64:${VERSION}
     - run: docker pull docker.pkg.github.com/${GITHUB_ACTOR}/docker-suricata/runner-armv6:${VERSION}
+
+    - run: docker tag docker.pkg.github.com/${GITHUB_ACTOR}/docker-suricata/runner-x86_64:${VERSION} jasonish/suricata:${VERSION}-x86_64
+    - run: docker tag docker.pkg.github.com/${GITHUB_ACTOR}/docker-suricata/runner-armv6:${VERSION} jasonish/suricata:${VERSION}-armv6
+
     - run: ./build.sh push
